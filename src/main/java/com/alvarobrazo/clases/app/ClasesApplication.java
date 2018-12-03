@@ -1,12 +1,12 @@
-package com.bolsadeideas.springboot.app;
+package com.alvarobrazo.clases.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootDataJpaApplication {
+public class ClasesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootDataJpaApplication.class, args);
+		SpringApplication.run(ClasesApplication.class, args);
 	}
 }
