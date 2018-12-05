@@ -1,8 +1,8 @@
 package com.alvarobrazo.clases.app.models.dao;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.alvarobrazo.clases.app.models.entity.Alumno;
 
-public interface IAlumnoDao extends CrudRepository<Alumno, Long> {
+public interface IAlumnoDao extends PagingAndSortingRepository<Alumno, Long> {
 }

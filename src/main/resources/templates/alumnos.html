@@ -9,40 +9,45 @@
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body">
 				<h4 class="card-title">
-					<a class="btn btn-primary btn-xs" th:href="@{/alumno}">Crear
+					<a class="btn btn-primary btn-xs" th:href="@{/alumno/alterar}">Crear
 						nuevo alumno</a>
 				</h4>
 				<table class="table table-striped">
 					<thead class="thead-dark">
 						<tr>
-							<th style="text-align: center;">id</th>
+							<th class="text-center d-none d-md-table-cell">id</th>
 							<th>nombre</th>
 							<th>apellido</th>
-							<th>email</th>
-							<th class="text-center">fecha</th>
-							<th class="text-center">editar</th>
-							<th class="text-center">eliminar</th>
+							<th class="d-none d-md-table-cell">email</th>
+							<th class="text-center d-none d-md-table-cell">fecha</th>
+							<th class="text-center">ver</th>
+							<th class="text-center d-none d-md-table-cell">editar</th>
+							<th class="text-center d-none d-md-table-cell">eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="alumno: ${alumnos}">
-							<td th:text="${alumno.id}"></td>
+							<td class="d-none d-md-table-cell" th:text="${alumno.id}"></td>
 							<td th:text="${alumno.nombre}"></td>
 							<td th:text="${alumno.apellido}"></td>
-							<td th:text="${alumno.email}"></td>
-							<td class="text-center"
+							<td class="d-none d-md-table-cell" th:text="${alumno.email}"></td>
+							<td class="text-center d-none d-md-table-cell"
 								th:text="${#dates.format(alumno.createAt, 'dd-MM-yyyy')}"></td>
 							<td class="text-center"><a class="icon-a"
-								th:href="@{/alumno/}+${alumno.id}"><i
+								th:href="@{/alumno/ver/}+${alumno.id}"><i
+									class="far fa-eye fa-2x"></i></a></td>
+							<td class="text-center d-none d-md-table-cell"><a class="icon-a"
+								th:href="@{/alumno/alterar/}+${alumno.id}"><i
 									class="far fa-edit fa-2x"></i></a></td>
-							<td class="text-center"><a class="icon-a"
-								th:href="@{/delete/alumno/}+${alumno.id}"><i
+							<td class="text-center d-none d-md-table-cell"><a class="icon-a"
+								th:href="@{/alumno/delete/}+${alumno.id}"><i
 									class="fas fa-trash fa-2x"
 									onclick="return confirm('¿Estás seguro que quieres eliminar?');"></i></a>
 							</td>
 						</tr>
 					</tbody>
 				</table>
+				<nav th:replace="paginator-nav :: paginator"></nav>
 			</div>
 		</div>
 	</div>
