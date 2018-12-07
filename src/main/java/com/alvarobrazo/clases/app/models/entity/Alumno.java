@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="clientes")
+@Table(name="alumnos")
 public class Alumno implements Serializable {
 	
 	/**

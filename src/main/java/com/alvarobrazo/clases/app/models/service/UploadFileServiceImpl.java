@@ -8,7 +8,6 @@ import java.nio.file.Paths;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -49,6 +48,21 @@ public class UploadFileServiceImpl implements IUploadFileService {
 	
 	public Path getPath(String filename) {
 		return Paths.get(rutaUploads+"//"+filename);
+	}
+
+
+	@Override
+	public void creafeIfNotExists() {
+		File uploads = Paths.get(rutaUploads).toFile();
+		if(!uploads.exists()) {
+			try {
+				Files.createDirectory(Paths.get(rutaUploads));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
 	}
 
 }

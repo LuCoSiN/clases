@@ -1,8 +1,5 @@
 package com.alvarobrazo.clases.app.controllers;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -13,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,7 +41,8 @@ public class AlumnosController {
 	@Value("${clases.max.upload.size}")
 	private int maxUploadSize;
 
-	@RequestMapping(value = "/alumnos", method = RequestMethod.GET)
+	@Secured("ROLE_USER")
+	@RequestMapping(value = {"/alumnos","/"}, method = RequestMethod.GET)
 	public String alumnos(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 		Pageable pageRequest = PageRequest.of(page, 10);
 		Page<Alumno> alumnos = alumnoSercice.findAll(pageRequest);
@@ -56,7 +55,7 @@ public class AlumnosController {
 	}
 	
 	
-
+	@Secured("ROLE_USER")
 	@RequestMapping(value = "/alumno/alterar")
 	public String crear(Map<String, Object> model) {
 		Alumno cliente = new Alumno();
@@ -65,6 +64,7 @@ public class AlumnosController {
 		return "alumno/alterar";
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(value = "/alumno/ver/{id}")
 	public String verAlumno(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
 		Alumno alumno = alumnoSercice.findOne(id);
@@ -77,6 +77,7 @@ public class AlumnosController {
 		return "alumno/ver";
 	}
 
+	@Secured("ROLE_USER")
 	@RequestMapping(value = "/alumno/alterar/{id}")
 	public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
 		Alumno alumno = null;
@@ -95,6 +96,7 @@ public class AlumnosController {
 		return "alumno/alterar";
 	}
 
+	@Secured("ROLE_USER")
 	@RequestMapping(value = "/alumno/alterar", method = RequestMethod.POST)
 	public String guardar(@Valid Alumno alumno, BindingResult result, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) {
@@ -145,6 +147,7 @@ public class AlumnosController {
 		return "redirect:/alumnos";
 	}
 
+	@Secured("ROLE_USER")
 	@RequestMapping(value = "/alumno/delete/{id}")
 	public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 		if (id > 0) {

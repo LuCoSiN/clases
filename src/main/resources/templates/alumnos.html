@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout/layout :: head"></head>
 <meta charset="UTF-8" />
-<body>
+<body class="bg-light">
 	<header th:replace="layout/layout :: header"></header>
 	<div class="container py-4">
 		<div class="card">
-			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-header bg-secondary text-white font-weight-bold" th:text="${titulo}"></div>
 			<div class="card-body">
 				<h4 class="card-title">
 					<a class="btn btn-primary btn-xs" th:href="@{/alumno/alterar}">Crear

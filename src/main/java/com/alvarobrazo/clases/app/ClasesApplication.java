@@ -1,12 +1,24 @@
 package com.alvarobrazo.clases.app;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class ClasesApplication {
+import com.alvarobrazo.clases.app.models.service.IUploadFileService;
 
+@SpringBootApplication
+public class ClasesApplication implements CommandLineRunner {
+	
+	@Autowired
+	IUploadFileService uploadFileService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ClasesApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		uploadFileService.creafeIfNotExists();
 	}
 }
